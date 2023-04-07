@@ -3,12 +3,11 @@
     {
       "from": {
         "id": "systems",
-        "type": "indirect",
-        "flake": false
+        "type": "indirect"
       },
       "to": {
         "owner": "zimbatm",
-        "repo": "flake-systems",
+        "repo": "exp-flake-systems",
         "type": "github"
       }
     },

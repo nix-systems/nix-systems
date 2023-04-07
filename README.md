@@ -11,9 +11,9 @@ author can then just use the `systems` input and call it a day.
 
 ## Result
 
-Fail
+Because the flake-registry can not refer to flakes with `flake = false`, we
+expose an empty flake.
 
-Unfortunately the flake registry doesn't support `flake = false` inputs.
-Tested both on the `from` and the `to`.
+## TODO
 
-Fixing this would require patching Nix itself. To be continued...
+Show a demo
