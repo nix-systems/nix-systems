@@ -9,11 +9,17 @@ In this repo, I wanted to explore the idea further; what if a default list of
 systems was provided by the flake-registry itself? In most cases, the flake
 author can then just use the `systems` input and call it a day.
 
-## Result
+## POC
+
+In this POC, we demonstrate that the idea is possible. The official flake
+registry could contain a `systems` mapping.
 
 Because the flake-registry can not refer to flakes with `flake = false`, we
 expose an empty flake.
 
-## TODO
+Because the flake cannot have a list of strings as a direct output, we still
+require the user to `import systems`.
 
-Show a demo
+## Demo
+
+Check out the [./demo](./demo) folder.

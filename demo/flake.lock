@@ -1,0 +1,38 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 0,
+        "narHash": "sha256-Kr/O/UlfqAtoFmkZeAaphsxogeaN8a/IugBApFzPfpk=",
+        "path": "/nix/store/chj79hz14v92rmdhpgw8pr21gw50pkwk-source",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "systems": "systems"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1680871295,
+        "narHash": "sha256-2WJPdFgodyA33VC3u02QZ6x1BZSzV/b9zFaRhComudQ=",
+        "owner": "zimbatm",
+        "repo": "exp-flake-systems",
+        "rev": "b20297dd4e44c0d0239ebfefa098584d1cff88f5",
+        "type": "github"
+      },
+      "original": {
+        "id": "systems",
+        "type": "indirect"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
