@@ -1,6 +1,6 @@
 # nix-systems - externally extensible flake systems
 
-> Status: experimental
+> Status: beta
 
 This project introduces a new pattern that makes flake systems externally
 extensible, to work around that limitation.
