@@ -92,11 +92,11 @@ git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2f
 ## CLI usage
 
 Create your own file containing a list of systems:
-`$ echo '["x86_64-linux"]' > flake.systems.nix`
+`$ mkdir -p flake.systems && printf '%s\n' '["x86_64-linux"]' > flake.systems/default.nix`
 
 
 Then run the flake and override the input:
-`$ nix flake show ./examples/simple/ --override-input systems path:$PWD/flake.systems.nix`
+`$ nix flake show ./examples/simple --override-input systems "path:$PWD/flake.systems"`
 ```
 git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2fsimple
 └───packages
