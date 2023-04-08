@@ -33,6 +33,8 @@ Here
   description = "A basic flake";
 
   inputs.systems.url = "github:numtide/flake-systems";
+  # Needed for path overrides
+  inputs.systems.flake = false;
 
   outputs = { self, systems, nixpkgs }:
     let
@@ -82,6 +84,21 @@ pattern:
 `$ nix flake show ./examples/consumer/`
 ```
 git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2fconsumer
+└───packages
+    └───x86_64-linux
+        └───hello: package 'hello-2.12.1'
+```
+
+## CLI usage
+
+Create your own file containing a list of systems:
+`$ echo '["x86_64-linux"]' > flake.systems.nix`
+
+
+Then run the flake and override the input:
+`$ nix flake show ./examples/simple/ --override-input systems path:$PWD/flake.systems.nix`
+```
+git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2fsimple
 └───packages
     └───x86_64-linux
         └───hello: package 'hello-2.12.1'

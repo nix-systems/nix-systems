@@ -2,6 +2,8 @@
   description = "A basic flake";
 
   inputs.systems.url = "github:numtide/flake-systems";
+  # Needed for CLI workflow
+  inputs.systems.flake = false;
 
   outputs = { self, systems, nixpkgs }:
     let
