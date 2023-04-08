@@ -33,7 +33,7 @@ Here
   description = "A basic flake";
 
   inputs.systems.url = "github:numtide/flake-systems";
-  # Needed for path overrides
+  # Needed for CLI workflow
   inputs.systems.flake = false;
 
   outputs = { self, systems, nixpkgs }:
@@ -91,8 +91,9 @@ git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2f
 
 ## CLI usage
 
-Create your own file containing a list of systems:
-`$ echo '["x86_64-linux"]' > flake.systems.nix`
+Create your own file containing the current system:
+`$ nix eval --expr "[builtins.currentSystem]" --impure > flake.systems.nix`
+
 
 
 Then run the flake and override the input:
