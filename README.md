@@ -1,5 +1,7 @@
 # flake-systems - externally extensible flake systems
 
+> Status: experimental
+
 This project provides a default list of systems for which the flake can be
 evaluated against. By doing so, we introduce a pattern for systems to be
 externally extensible.
