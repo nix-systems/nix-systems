@@ -2,32 +2,19 @@
 
 > Status: experimental
 
-This project provides a default list of systems for which the flake can be
-evaluated against. By doing so, we introduce a pattern for systems to be
-externally extensible.
+This project introduces a new pattern that makes flake systems externally
+extensible, to work around that limitation.
 
 The main benefit of this pattern is for the flake consumer. Why evaluate all
 the systems when only using one? Or reversely, potentially the flake might
 support building against more architectures that the flake author have tested.
 Is the user supposed for fork every flake to add their architecture?
 
-## Current list
+## Examples
 
-This flakes exposes the common list of systems:
+### Basic usage
 
-<!-- [$ default.nix](./default.nix) as nix -->
-```nix
-[
-  "aarch64-darwin"
-  "aarch64-linux"
-  "x86_64-darwin"
-  "x86_64-linux"
-]
-```
-
-## Basic usage
-
-Here is a basic example of how to use this project:
+Here is a basic example of how to use this pattern:
 
 [$ ./examples/simple/flake.nix](./examples/simple/flake.nix) as nix
 ```nix
@@ -64,10 +51,11 @@ git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%
         └───hello: package 'hello-2.12.1'
 ```
 
-## Consumer usage
+### Consumer usage
 
 Here is an example of a flake that consumes another flake that uses that
-pattern:
+pattern. In this version, the author decided to provide their own list of
+flake systems in the local `flake.systems.nix` file.
 
 [$ ./examples/consumer/flake.nix](./examples/consumer/flake.nix) as nix
 ```nix
@@ -105,7 +93,7 @@ git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%
         └───hello: package 'hello-2.12.1'
 ```
 
-## CLI usage
+### CLI usage
 
 Generally when accessing a flake with the CLI, the only system that we care
 about, is the one of the current host. Reducing the list of systems is a good
@@ -124,9 +112,34 @@ git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%
         └───hello: package 'hello-2.12.1'
 ```
 
+## Available system flakes
+
+* `github:nix-systems/default` - exposes aarch64 and x86_64 for linux and darwin.
+* `github:nix-systems/aarch64-darwin`
+* `github:nix-systems/aarch64-linux`
+* `github:nix-systems/x86_64-darwin`
+* `github:nix-systems/x86_64-linux`
+
+Please create an issue if you would like to see other systems.
+
+## Pattern design
+
+The proposed pattern rests on two ideas:
+
+1. The `systems` input MUST be reserved for this pattern.
+2. When the `systems` input is imported, it MUST return a list of supported
+   systems. Eg: `[ "x86_64-linux" ]`.
+
+Point (2) allows developers to easily override the systems list with a single
+file specific to the project, instead of having to create a sub-flake:
+```
+inputs.systems.url = "path:./flake.systems.nix";
+inputs.systems.flake = false;
+```
+
 ## Future work
 
 Once this pattern has proven its efficacy, I propose that we:
-1. Move this repo to the NixOS org
+1. Give control of this org to the NixOS Foundation.
 2. Add the "systems" input in the flake registry for even easier usage.
 

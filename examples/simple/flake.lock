@@ -20,11 +20,11 @@
     },
     "systems": {
       "locked": {
-        "lastModified": 1680978952,
-        "narHash": "sha256-myUeGVdO80okCLcxJaZ0ydWMZL+ne3iv1MfHE8r0W5I=",
+        "lastModified": 1680980633,
+        "narHash": "sha256-mz27VfAExPMYuoWsb1cf++DIyUWWBEbAvXD0BJ+AT/E=",
         "owner": "nix-systems",
         "repo": "default",
-        "rev": "d1ba6f735ca240089076feca2de432e4e9d01937",
+        "rev": "4e9a51a15ceb27e5141819142a7d2ee827943fc8",
         "type": "github"
       },
       "original": {
