@@ -25,7 +25,7 @@ This flakes exposes the common list of systems:
 
 ## Basic usage
 
-Here 
+Here is a basic example of how to use this project:
 
 [$ ./examples/simple/flake.nix](./examples/simple/flake.nix) as nix
 ```nix
@@ -94,8 +94,6 @@ git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2f
 Create your own file containing the current system:
 `$ nix eval --expr "[builtins.currentSystem]" --impure > flake.systems.nix`
 
-
-
 Then run the flake and override the input:
 `$ nix flake show ./examples/simple/ --override-input systems path:$PWD/flake.systems.nix`
 ```
@@ -110,5 +108,4 @@ git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2f
 Once this pattern has proven its efficacy, I propose that we:
 1. Move this repo to the NixOS org
 2. Add the "systems" input in the flake registry for even easier usage.
-
 
