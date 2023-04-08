@@ -137,6 +137,12 @@ inputs.systems.url = "path:./flake.systems.nix";
 inputs.systems.flake = false;
 ```
 
+## Contributions
+
+Thanks to @nxrdp for exploring some of those ideas in
+https://github.com/divnix/nosys, @bb010g for bringing those ideas to
+flake-utils, and @srid for the usual insightful conversations.
+
 ## Future work
 
 Once this pattern has proven its efficacy, I propose that we:
