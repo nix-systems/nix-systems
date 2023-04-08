@@ -20,16 +20,17 @@
     },
     "systems": {
       "locked": {
-        "lastModified": 1680871295,
-        "narHash": "sha256-2WJPdFgodyA33VC3u02QZ6x1BZSzV/b9zFaRhComudQ=",
-        "owner": "zimbatm",
-        "repo": "exp-flake-systems",
-        "rev": "b20297dd4e44c0d0239ebfefa098584d1cff88f5",
+        "lastModified": 1680871668,
+        "narHash": "sha256-UxJYvJsVmfJeOeMA4XGyVdvSkuQL6cHXIMdKwFMP9aY=",
+        "owner": "numtide",
+        "repo": "flake-systems",
+        "rev": "256f1f90f91465ea39810905f286d5438da56127",
         "type": "github"
       },
       "original": {
-        "id": "systems",
-        "type": "indirect"
+        "owner": "numtide",
+        "repo": "flake-systems",
+        "type": "github"
       }
     }
   },

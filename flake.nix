@@ -1,6 +1,6 @@
 {
-  description = "Flake default systems";
+  description = "Externally extensible flake systems";
 
-  # Use `import systems` to load the content of the flake
+  # For usage, see the README.md
   outputs = _: { };
 }

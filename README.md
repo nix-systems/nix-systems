@@ -1,25 +1,96 @@
-# flake-systems experiment
+# flake-systems - externally extensible flake systems
 
-One of the core issues of flakes is that the list of systems that a flake is evaluated with is internal to the flake. Some projects can technically build with more platforms, but to change this, the user has to fork or submit a patch to change the list. Conversely, as a consumer of a flake, you might not care of evaluating the flake with all of the systems, and that list cannot be reduced.
+This project provides a default list of systems for which the flake can be
+evaluated against. By doing so, we introduce a pattern for systems to be
+externally extensible.
 
-In https://github.com/numtide/treefmt/pull/228, we show that by introducing a
-`systems` input, it allows to override that list (with a bit of boilerplate).
+The main benefit of this pattern is for the flake consumer. Why evaluate all
+the systems when only using one? Or reversely, potentially the flake might
+support building against more architectures that the flake author have tested.
+Is the user supposed for fork every flake to add their architecture?
 
-In this repo, I wanted to explore the idea further; what if a default list of
-systems was provided by the flake-registry itself? In most cases, the flake
-author can then just use the `systems` input and call it a day.
+## Current list
 
-## POC
+This flakes exposes the common list of systems:
 
-In this POC, we demonstrate that the idea is possible. The official flake
-registry could contain a `systems` mapping.
+<!-- [$ default.nix](./default.nix) as nix -->
+```nix
+[
+  "aarch64-darwin"
+  "aarch64-linux"
+  "x86_64-darwin"
+  "x86_64-linux"
+]
+```
 
-Because the flake-registry can not refer to flakes with `flake = false`, we
-expose an empty flake.
+## Basic usage
 
-Because the flake cannot have a list of strings as a direct output, we still
-require the user to `import systems`.
+Here 
 
-## Demo
+[$ ./examples/simple/flake.nix](./examples/simple/flake.nix) as nix
+```nix
+{
+  description = "A basic flake";
 
-Check out the [./demo](./demo) folder.
+  inputs.systems.url = "github:numtide/flake-systems";
+
+  outputs = { self, systems, nixpkgs }:
+    let
+      eachSystem = nixpkgs.lib.genAttrs (import systems);
+    in
+    {
+      packages = eachSystem (system: {
+        hello = nixpkgs.legacyPackages.${system}.hello;
+      });
+    };
+}
+```
+
+## Consumer usage
+
+Here is an example of a flake that consumes another flake that uses that
+pattern:
+
+[$ ./examples/consumer/flake.nix](./examples/consumer/flake.nix) as nix
+```nix
+{
+  description = "A consumer flake";
+
+  # Here we use a local list of systems
+  inputs.systems.url = "path:./flake.systems.nix";
+  inputs.systems.flake = false;
+
+  # This represents another flake dependency that uses the same "systems"
+  # convention.
+  inputs.demo.url = "path:../simple";
+  # Here we override the list of systems with only our own
+  inputs.demo.inputs.systems.follows = "systems";
+
+  outputs = { self, systems, nixpkgs, demo }:
+    let
+      eachSystem = nixpkgs.lib.genAttrs (import systems);
+    in
+    {
+      packages = eachSystem (system: {
+        # Get the package from the demo flake
+        hello = demo.packages.${system}.hello;
+      });
+    };
+}
+```
+
+`$ nix flake show ./examples/consumer/`
+```
+git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2fconsumer
+└───packages
+    └───x86_64-linux
+        └───hello: package 'hello-2.12.1'
+```
+
+## Future work
+
+Once this pattern has proven its efficacy, I propose that we:
+1. Move this repo to the NixOS org
+2. Add the "systems" input in the flake registry for even easier usage.
+
+

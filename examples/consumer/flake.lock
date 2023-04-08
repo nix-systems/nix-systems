@@ -1,0 +1,68 @@
+{
+  "nodes": {
+    "demo": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-XsVBxwWVMaVLfr6lOov69oYUYPlLD/fa/pWVwfSJLds=",
+        "path": "../simple",
+        "type": "path"
+      },
+      "original": {
+        "path": "../simple",
+        "type": "path"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 0,
+        "narHash": "sha256-Kr/O/UlfqAtoFmkZeAaphsxogeaN8a/IugBApFzPfpk=",
+        "path": "/nix/store/chj79hz14v92rmdhpgw8pr21gw50pkwk-source",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 0,
+        "narHash": "sha256-Kr/O/UlfqAtoFmkZeAaphsxogeaN8a/IugBApFzPfpk=",
+        "path": "/nix/store/chj79hz14v92rmdhpgw8pr21gw50pkwk-source",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "root": {
+      "inputs": {
+        "demo": "demo",
+        "nixpkgs": "nixpkgs_2",
+        "systems": "systems"
+      }
+    },
+    "systems": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-yJg569/Wc8hgG64XgA72/nLsZthk+InI5N+Hhmcc+kA=",
+        "path": "./flake.systems.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "./flake.systems.nix",
+        "type": "path"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

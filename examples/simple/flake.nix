@@ -1,7 +1,9 @@
 {
-  description = "A very basic flake";
+  description = "A basic flake";
 
-  outputs = { self, nixpkgs, systems }:
+  inputs.systems.url = "github:numtide/flake-systems";
+
+  outputs = { self, systems, nixpkgs }:
     let
       eachSystem = nixpkgs.lib.genAttrs (import systems);
     in

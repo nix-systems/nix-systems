@@ -6,8 +6,8 @@
         "type": "indirect"
       },
       "to": {
-        "owner": "zimbatm",
-        "repo": "exp-flake-systems",
+        "owner": "numtide",
+        "repo": "flake-systems",
         "type": "github"
       }
     },
