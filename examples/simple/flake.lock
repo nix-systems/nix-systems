@@ -20,11 +20,11 @@
     },
     "systems": {
       "locked": {
-        "lastModified": 1680949730,
-        "narHash": "sha256-GLEm7UgOwjcMI37Y6+SCVBPcx0CgU5d5kpIluNewkEo=",
+        "lastModified": 1680978266,
+        "narHash": "sha256-kcW7fPFlnIT8mIGE6KyvxZNnS7nkOaFE4PlEiK0/ry8=",
         "owner": "numtide",
         "repo": "flake-systems",
-        "rev": "28500c3ba5c5684c489e2584a4d407b58d47625c",
+        "rev": "44932e611b8f36df4351563ad05fe8cf67e4b140",
         "type": "github"
       },
       "original": {

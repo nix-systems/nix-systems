@@ -35,8 +35,6 @@ Here is a basic example of how to use this project:
   description = "A basic flake";
 
   inputs.systems.url = "github:numtide/flake-systems";
-  # Needed for CLI workflow
-  inputs.systems.flake = false;
 
   outputs = { self, systems, nixpkgs }:
     let
@@ -48,6 +46,22 @@ Here is a basic example of how to use this project:
       });
     };
 }
+```
+
+And here you can see all the systems for that flake:
+
+`$ nix flake show ./examples/simple/`
+```
+git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2fsimple
+└───packages
+    ├───aarch64-darwin
+    │   └───hello: package 'hello-2.12.1'
+    ├───aarch64-linux
+    │   └───hello: package 'hello-2.12.1'
+    ├───x86_64-darwin
+    │   └───hello: package 'hello-2.12.1'
+    └───x86_64-linux
+        └───hello: package 'hello-2.12.1'
 ```
 
 ## Consumer usage
@@ -93,11 +107,16 @@ git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2f
 
 ## CLI usage
 
-Create your own file containing the current system:
-`$ nix eval --expr "[builtins.currentSystem]" --impure > flake.systems.nix`
+Generally when accessing a flake with the CLI, the only system that we care
+about, is the one of the current host. Reducing the list of systems is a good
+way to speed up the Nix evaluation.
 
-Then run the flake and override the input:
-`$ nix flake show ./examples/simple/ --override-input systems path:$PWD/flake.systems.nix`
+In order to make that scenario usage easier, we published common static system
+configurations to the `nix-systems` GitHub org. If a system you are using is
+missing, please create a ticket on this repo.
+
+Example usage:
+`$ nix flake show ./examples/simple/ --override-input systems github:nix-systems/x86_64-linux`
 ```
 git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2fsimple
 └───packages
