@@ -6,8 +6,8 @@
         "type": "indirect"
       },
       "to": {
-        "owner": "numtide",
-        "repo": "flake-systems",
+        "owner": "nix-systems",
+        "repo": "default",
         "type": "github"
       }
     },

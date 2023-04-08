@@ -1,4 +1,4 @@
-# flake-systems - externally extensible flake systems
+# nix-systems - externally extensible flake systems
 
 > Status: experimental
 
@@ -34,7 +34,7 @@ Here is a basic example of how to use this project:
 {
   description = "A basic flake";
 
-  inputs.systems.url = "github:numtide/flake-systems";
+  inputs.systems.url = "github:nix-systems/default";
 
   outputs = { self, systems, nixpkgs }:
     let
@@ -52,7 +52,7 @@ And here you can see all the systems for that flake:
 
 `$ nix flake show ./examples/simple/`
 ```
-git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2fsimple
+git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%2fsimple
 └───packages
     ├───aarch64-darwin
     │   └───hello: package 'hello-2.12.1'
@@ -99,7 +99,7 @@ pattern:
 
 `$ nix flake show ./examples/consumer/`
 ```
-git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2fconsumer
+git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%2fconsumer
 └───packages
     └───x86_64-linux
         └───hello: package 'hello-2.12.1'
@@ -118,7 +118,7 @@ missing, please create a ticket on this repo.
 Example usage:
 `$ nix flake show ./examples/simple/ --override-input systems github:nix-systems/x86_64-linux`
 ```
-git+file:///home/zimbatm/go/src/github.com/numtide/flake-systems?dir=examples%2fsimple
+git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%2fsimple
 └───packages
     └───x86_64-linux
         └───hello: package 'hello-2.12.1'

@@ -1,7 +1,7 @@
 {
   description = "A basic flake";
 
-  inputs.systems.url = "github:numtide/flake-systems";
+  inputs.systems.url = "github:nix-systems/default";
 
   outputs = { self, systems, nixpkgs }:
     let
