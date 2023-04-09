@@ -147,5 +147,9 @@ flake-utils, and @srid for the usual insightful conversations.
 
 Once this pattern has proven its efficacy, I propose that we:
 1. Give control of this org to the NixOS Foundation.
-2. Add the "systems" input in the flake registry for even easier usage.
+2. Add the "systems" input in the flake registry for even easier usage (see
+   https://github.com/NixOS/flake-registry/pull/42 )
+3. Builtin support for this pattern in flake.nix would be nice. It would
+   make it possible to inline the list of system in the flake itself, and
+   shorten the system override CLI incantation as well.
 
