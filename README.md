@@ -151,5 +151,6 @@ Once this pattern has proven its efficacy, I propose that we:
    https://github.com/NixOS/flake-registry/pull/42 )
 3. Builtin support for this pattern in flake.nix would be nice. It would
    make it possible to inline the list of system in the flake itself, and
-   shorten the system override CLI incantation as well.
+   shorten the system override CLI incantation as well. See:
+   https://github.com/NixOS/nix/issues/3843
 
