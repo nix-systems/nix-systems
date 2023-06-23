@@ -5,10 +5,11 @@
 This project introduces a new pattern that makes flake systems externally
 extensible, to work around that limitation.
 
-The main benefit of this pattern is for the flake consumer. Why evaluate all
-the systems when only using one? Or reversely, potentially the flake might
-support building against more architectures that the flake author have tested.
-Is the user supposed for fork every flake to add their architecture?
+The main benefit of this pattern is for the flake consumer. For example, why
+should a command like `nix flake show` display all systems when the user only
+cares about just one?  Or reversely, potentially the flake might support building
+against more architectures that the flake author have tested.  Is the user
+supposed to fork every flake to add their architecture?
 
 ## Examples
 
@@ -97,7 +98,8 @@ git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%
 
 Generally when accessing a flake with the CLI, the only system that we care
 about, is the one of the current host. Reducing the list of systems is a good
-way to speed up the Nix evaluation.
+way to speed up commands that operate over all systems (like `nix flake show`).
+
 
 In order to make that scenario usage easier, we published common static system
 configurations to the `nix-systems` GitHub org. If a system you are using is
