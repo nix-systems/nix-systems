@@ -117,6 +117,8 @@ git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%
 ## Available system flakes
 
 * `github:nix-systems/default` - exposes aarch64 and x86_64 for linux and darwin.
+* `github:nix-systems/default-linux` - exposes aarch64 and x86_64 for linux.
+* `github:nix-systems/default-darwin` - exposes aarch64 and x86_64 for darwin.
 * `github:nix-systems/aarch64-darwin`
 * `github:nix-systems/aarch64-linux`
 * `github:nix-systems/x86_64-darwin`
