@@ -1,6 +1,8 @@
 {
   description = "A consumer flake";
 
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
   # Here we use a local list of systems
   inputs.systems.url = "path:./flake.systems.nix";
   inputs.systems.flake = false;
@@ -11,7 +13,7 @@
   # Here we override the list of systems with only our own
   inputs.demo.inputs.systems.follows = "systems";
 
-  outputs = { self, systems, nixpkgs, demo }:
+  outputs = { systems, nixpkgs, demo, ... }:
     let
       eachSystem = nixpkgs.lib.genAttrs (import systems);
     in
