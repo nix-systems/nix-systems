@@ -1,9 +1,10 @@
 {
   description = "A basic flake";
 
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.systems.url = "github:nix-systems/default";
 
-  outputs = { self, systems, nixpkgs }:
+  outputs = { systems, nixpkgs, ... }:
     let
       eachSystem = nixpkgs.lib.genAttrs (import systems);
     in

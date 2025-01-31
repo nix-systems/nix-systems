@@ -22,9 +22,10 @@ Here is a basic example of how to use this pattern:
 {
   description = "A basic flake";
 
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.systems.url = "github:nix-systems/default";
 
-  outputs = { self, systems, nixpkgs }:
+  outputs = { systems, nixpkgs, ... }:
     let
       eachSystem = nixpkgs.lib.genAttrs (import systems);
     in
@@ -40,7 +41,7 @@ And here you can see all the systems for that flake:
 
 `$ nix flake show ./examples/simple/`
 ```
-git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%2fsimple
+git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples/simple
 └───packages
     ├───aarch64-darwin
     │   └───hello: package 'hello-2.12.1'
@@ -63,6 +64,8 @@ flake systems in the local `flake.systems.nix` file.
 {
   description = "A consumer flake";
 
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
   # Here we use a local list of systems
   inputs.systems.url = "path:./flake.systems.nix";
   inputs.systems.flake = false;
@@ -73,7 +76,7 @@ flake systems in the local `flake.systems.nix` file.
   # Here we override the list of systems with only our own
   inputs.demo.inputs.systems.follows = "systems";
 
-  outputs = { self, systems, nixpkgs, demo }:
+  outputs = { systems, nixpkgs, demo, ... }:
     let
       eachSystem = nixpkgs.lib.genAttrs (import systems);
     in
@@ -88,7 +91,7 @@ flake systems in the local `flake.systems.nix` file.
 
 `$ nix flake show ./examples/consumer/`
 ```
-git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%2fconsumer
+git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples/consumer
 └───packages
     └───x86_64-linux
         └───hello: package 'hello-2.12.1'
@@ -108,7 +111,7 @@ missing, please create a ticket on this repo.
 Example usage:
 `$ nix flake show ./examples/simple/ --override-input systems github:nix-systems/x86_64-linux`
 ```
-git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples%2fsimple
+git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples/simple
 └───packages
     └───x86_64-linux
         └───hello: package 'hello-2.12.1'
