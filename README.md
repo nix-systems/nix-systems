@@ -39,8 +39,8 @@ Here is a basic example of how to use this pattern:
 
 And here you can see all the systems for that flake:
 
-`$ nix flake show ./examples/simple/`
-```
+```console
+$ nix flake show ./examples/simple/
 git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples/simple
 └───packages
     ├───aarch64-darwin
@@ -89,8 +89,8 @@ flake systems in the local `flake.systems.nix` file.
 }
 ```
 
-`$ nix flake show ./examples/consumer/`
-```
+```console
+$ nix flake show ./examples/consumer/
 git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples/consumer
 └───packages
     └───x86_64-linux
@@ -109,8 +109,8 @@ configurations to the `nix-systems` GitHub org. If a system you are using is
 missing, please create a ticket on this repo.
 
 Example usage:
-`$ nix flake show ./examples/simple/ --override-input systems github:nix-systems/x86_64-linux`
-```
+```console
+$ nix flake show ./examples/simple/ --override-input systems github:nix-systems/x86_64-linux
 git+file:///home/zimbatm/go/src/github.com/nix-systems/nix-systems?dir=examples/simple
 └───packages
     └───x86_64-linux
